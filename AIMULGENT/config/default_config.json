@@ -1,0 +1,359 @@
+{
+  "system": {
+    "name": "AIMULGENT",
+    "version": "1.0.0",
+    "description": "AI Multiple Agents for Coding - State-of-the-art multi-agent system",
+    "max_concurrent_tasks": 10,
+    "log_level": "INFO",
+    "enable_metrics": true,
+    "enable_monitoring": true
+  },
+  
+  "coordinator": {
+    "heartbeat_interval": 30.0,
+    "heartbeat_timeout": 90.0,
+    "task_timeout_default": 300.0,
+    "max_retries": 3,
+    "event_queue_size": 1000,
+    "enable_load_balancing": true,
+    "coordination_strategy": "priority_based"
+  },
+  
+  "agents": {
+    "perception": {
+      "enabled": true,
+      "model_config": {
+        "vision_model": "microsoft/codebert-base",
+        "max_sequence_length": 512,
+        "batch_size": 8,
+        "device": "auto"
+      },
+      "capabilities": [
+        "visual_analysis",
+        "code_structure",
+        "pattern_recognition",
+        "ui_detection",
+        "complexity_analysis"
+      ],
+      "performance_targets": {
+        "response_time_ms": 2000,
+        "accuracy_threshold": 0.85
+      }
+    },
+    
+    "memory": {
+      "enabled": true,
+      "config": {
+        "db_path": "data/memory.db",
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "vector_db_type": "faiss",
+        "max_cache_size": 1000,
+        "consolidation_threshold": 0.95,
+        "forgetting_enabled": true,
+        "forgetting_age_days": 30
+      },
+      "capabilities": [
+        "episodic_memory",
+        "semantic_memory", 
+        "procedural_memory",
+        "memory_consolidation",
+        "context_retrieval"
+      ],
+      "performance_targets": {
+        "retrieval_time_ms": 100,
+        "similarity_threshold": 0.7
+      }
+    },
+    
+    "data": {
+      "enabled": true,
+      "config": {
+        "supported_formats": ["json", "csv", "parquet", "sql", "mongodb"],
+        "max_file_size_mb": 100,
+        "streaming_enabled": true,
+        "parallel_processing": true,
+        "quality_checks_enabled": true
+      },
+      "capabilities": [
+        "data_processing",
+        "schema_analysis", 
+        "pipeline_execution",
+        "data_validation",
+        "format_conversion"
+      ],
+      "connectors": {
+        "sql": {
+          "driver": "postgresql",
+          "pool_size": 10
+        },
+        "nosql": {
+          "driver": "mongodb", 
+          "connection_timeout": 5000
+        },
+        "api": {
+          "timeout": 30000,
+          "retry_attempts": 3
+        }
+      }
+    },
+    
+    "analysis": {
+      "enabled": true,
+      "config": {
+        "code_model": "microsoft/codebert-base",
+        "security_analysis": true,
+        "complexity_analysis": true,
+        "code_smell_detection": true,
+        "architectural_analysis": true,
+        "performance_profiling": true
+      },
+      "capabilities": [
+        "code_analysis",
+        "security_analysis",
+        "quality_assessment",
+        "complexity_measurement",
+        "architecture_detection"
+      ],
+      "thresholds": {
+        "complexity_warning": 10,
+        "complexity_critical": 20,
+        "maintainability_min": 50,
+        "security_severity": "medium"
+      }
+    },
+    
+    "visualization": {
+      "enabled": true,
+      "config": {
+        "default_theme": "dark",
+        "output_format": "html", 
+        "interactive": true,
+        "width": 1200,
+        "height": 800,
+        "dpi": 300,
+        "font_size": 12
+      },
+      "capabilities": [
+        "code_visualization",
+        "data_visualization", 
+        "report_generation",
+        "interactive_charts",
+        "architecture_diagrams"
+      ],
+      "supported_formats": ["html", "png", "svg", "pdf", "json"],
+      "themes": ["dark", "light", "colorful", "professional"]
+    }
+  },
+  
+  "neural_networks": {
+    "global_config": {
+      "device": "auto",
+      "mixed_precision": true,
+      "optimization_level": "O2",
+      "gradient_clipping": 1.0,
+      "weight_decay": 0.01
+    },
+    
+    "model_registry": {
+      "code_understanding": "microsoft/codebert-base",
+      "text_embedding": "sentence-transformers/all-MiniLM-L6-v2",
+      "vision_transformer": "google/vit-base-patch16-224",
+      "graph_neural_network": "custom_gnn_v1",
+      "generative_model": "meta/code-llama-7b"
+    },
+    
+    "training": {
+      "enabled": false,
+      "batch_size": 16,
+      "learning_rate": 1e-4,
+      "epochs": 10,
+      "validation_split": 0.2,
+      "early_stopping": true,
+      "checkpoint_dir": "models/checkpoints"
+    }
+  },
+  
+  "communication": {
+    "protocols": {
+      "mcp": {
+        "enabled": true,
+        "version": "1.0"
+      },
+      "acp": {
+        "enabled": true,
+        "message_format": "json"
+      },
+      "websocket": {
+        "enabled": true,
+        "port": 8765,
+        "max_connections": 100
+      }
+    },
+    
+    "message_routing": {
+      "strategy": "round_robin",
+      "load_balancing": true,
+      "failover": true,
+      "compression": "gzip"
+    }
+  },
+  
+  "storage": {
+    "databases": {
+      "primary": {
+        "type": "sqlite",
+        "path": "data/aimulgent.db",
+        "connection_pool_size": 10
+      },
+      "vector_store": {
+        "type": "faiss",
+        "index_type": "IndexFlatIP",
+        "dimension": 384
+      },
+      "cache": {
+        "type": "redis",
+        "host": "localhost",
+        "port": 6379,
+        "ttl": 3600
+      }
+    },
+    
+    "file_system": {
+      "data_directory": "data/",
+      "model_directory": "models/",
+      "output_directory": "output/",
+      "temp_directory": "temp/",
+      "max_disk_usage_gb": 10
+    }
+  },
+  
+  "security": {
+    "authentication": {
+      "enabled": false,
+      "method": "api_key",
+      "session_timeout": 3600
+    },
+    
+    "encryption": {
+      "enabled": false,
+      "algorithm": "AES-256-GCM",
+      "key_rotation_days": 90
+    },
+    
+    "access_control": {
+      "enabled": false,
+      "default_permissions": ["read", "analyze"],
+      "admin_permissions": ["read", "write", "admin", "configure"]
+    }
+  },
+  
+  "monitoring": {
+    "metrics": {
+      "enabled": true,
+      "collection_interval": 30,
+      "retention_days": 7,
+      "export_format": "prometheus"
+    },
+    
+    "logging": {
+      "level": "INFO",
+      "format": "structured",
+      "output": ["console", "file"],
+      "file_path": "logs/aimulgent.log",
+      "rotation": "daily",
+      "max_size_mb": 100
+    },
+    
+    "alerting": {
+      "enabled": false,
+      "channels": ["email", "webhook"],
+      "thresholds": {
+        "error_rate": 0.05,
+        "response_time_ms": 5000,
+        "memory_usage_percent": 80
+      }
+    }
+  },
+  
+  "performance": {
+    "optimization": {
+      "enable_caching": true,
+      "cache_strategy": "lru",
+      "parallel_execution": true,
+      "batch_processing": true,
+      "lazy_loading": true
+    },
+    
+    "resource_limits": {
+      "max_memory_gb": 8,
+      "max_cpu_percent": 80,
+      "max_gpu_memory_gb": 4,
+      "max_disk_io_mb_s": 100
+    },
+    
+    "scaling": {
+      "auto_scaling": false,
+      "min_agents": 1,
+      "max_agents": 10,
+      "scale_up_threshold": 0.8,
+      "scale_down_threshold": 0.3
+    }
+  },
+  
+  "research_features": {
+    "neuro_symbolic_ai": {
+      "enabled": false,
+      "logic_integration": true,
+      "probabilistic_reasoning": true
+    },
+    
+    "active_predictive_coding": {
+      "enabled": false,
+      "hierarchical_learning": true,
+      "world_model_updates": true
+    },
+    
+    "multi_agent_coordination": {
+      "consensus_algorithms": ["raft", "pbft"],
+      "conflict_resolution": "majority_vote",
+      "knowledge_sharing": true
+    }
+  },
+  
+  "integration": {
+    "ide_plugins": {
+      "vscode": {
+        "enabled": false,
+        "extension_id": "aimulgent.vscode"
+      },
+      "jetbrains": {
+        "enabled": false,
+        "plugin_name": "AIMULGENT-Plugin"
+      }
+    },
+    
+    "ci_cd": {
+      "github_actions": {
+        "enabled": false,
+        "workflow_template": "aimulgent-analysis.yml"
+      },
+      "jenkins": {
+        "enabled": false,
+        "plugin_version": "1.0.0"
+      }
+    },
+    
+    "external_apis": {
+      "openai": {
+        "enabled": false,
+        "model": "gpt-4",
+        "api_key_env": "OPENAI_API_KEY"
+      },
+      "anthropic": {
+        "enabled": false, 
+        "model": "claude-3-sonnet",
+        "api_key_env": "ANTHROPIC_API_KEY"
+      }
+    }
+  }
+}

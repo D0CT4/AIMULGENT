@@ -1,0 +1,187 @@
+# AIMULGENT - AI Multiple Agents for Coding
+# Requirements for state-of-the-art multi-agent system
+
+# Core Deep Learning Frameworks
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.25.0
+sentence-transformers>=2.2.0
+tensorflow>=2.10.0  # Alternative framework support
+
+# Specialized AI Libraries
+huggingface-hub>=0.12.0
+accelerate>=0.15.0
+datasets>=2.8.0
+
+# Code Analysis and AST Processing
+ast-tools>=0.1.0
+tree-sitter>=0.20.0
+tree-sitter-python>=0.20.0
+bandit[toml]>=1.7.0
+pylint>=2.15.0
+radon>=5.1.0
+vulture>=2.7.0  # Dead code detection
+flake8>=6.0.0
+mypy>=1.0.0
+
+# Graph Processing and Neural Networks
+networkx>=3.0
+torch-geometric>=2.2.0
+dgl>=1.0.0  # Deep Graph Library
+graphviz>=0.20.0
+pygraphviz>=1.10.0
+
+# Data Processing and Analysis
+pandas>=1.5.0
+numpy>=1.24.0
+scipy>=1.10.0
+scikit-learn>=1.2.0
+polars>=0.16.0  # Fast dataframe library
+
+# Database and Storage
+sqlite3  # Built-in Python
+sqlalchemy>=1.4.0
+pymongo>=4.3.0
+redis>=4.5.0
+faiss-cpu>=1.7.3  # Vector similarity search
+elasticsearch>=8.6.0
+
+# Visualization and Reporting
+matplotlib>=3.6.0
+seaborn>=0.12.0
+plotly>=5.12.0
+bokeh>=3.0.0
+graphviz>=0.20.0
+pillow>=9.4.0
+imageio>=2.25.0
+
+# Web and API
+fastapi>=0.89.0
+uvicorn>=0.20.0
+aiohttp>=3.8.0
+websockets>=10.4.0
+requests>=2.28.0
+
+# Async and Concurrency
+asyncio  # Built-in Python
+asyncpg>=0.27.0
+aiofiles>=22.1.0
+aiojobs>=1.1.0
+
+# Configuration and Logging
+pydantic>=1.10.0
+python-dotenv>=0.21.0
+pyyaml>=6.0.0
+toml>=0.10.0
+loguru>=0.6.0
+structlog>=22.3.0
+
+# Testing and Quality Assurance
+pytest>=7.2.0
+pytest-asyncio>=0.20.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+coverage>=7.1.0
+
+# Development and Debugging
+ipython>=8.8.0
+jupyter>=1.0.0
+notebook>=6.5.0
+jupyterlab>=3.5.0
+rich>=13.0.0  # Better terminal output
+tqdm>=4.64.0  # Progress bars
+
+# Security and Encryption
+cryptography>=39.0.0
+pycryptodome>=3.16.0
+bcrypt>=4.0.0
+
+# Performance and Optimization
+numba>=0.56.0
+cython>=0.29.0
+psutil>=5.9.0
+memory-profiler>=0.60.0
+line-profiler>=4.0.0
+
+# Communication Protocols (2025 Agent Standards)
+# Model Context Protocol (MCP) support
+openai>=1.0.0
+anthropic>=0.8.0
+
+# Multi-agent Communication
+celery>=5.2.0  # Distributed task queue
+kombu>=5.2.0   # Messaging library
+
+# Computer Vision (for code visualization)
+opencv-python>=4.7.0
+opencv-contrib-python>=4.7.0
+
+# Natural Language Processing
+spacy>=3.5.0
+nltk>=3.8.0
+textblob>=0.17.0
+
+# Code Generation and Templates
+jinja2>=3.1.0
+black>=23.0.0  # Code formatting
+isort>=5.12.0  # Import sorting
+
+# System Integration
+psutil>=5.9.0
+watchdog>=2.2.0  # File system monitoring
+click>=8.1.0  # CLI framework
+
+# Documentation Generation
+sphinx>=6.0.0
+mkdocs>=1.4.0
+pdoc>=12.0.0
+
+# Container and Deployment (Optional)
+docker>=6.0.0
+kubernetes>=25.3.0
+
+# Specialized Libraries for 2025 Features
+langchain>=0.1.0  # LLM orchestration
+crewai>=0.1.0     # Multi-agent framework
+autogen-agentchat>=0.2.0  # Microsoft AutoGen
+
+# Vector Databases
+chromadb>=0.4.0
+pinecone-client>=2.2.0
+weaviate-client>=3.15.0
+
+# Monitoring and Observability
+prometheus-client>=0.15.0
+opentelemetry-api>=1.15.0
+opentelemetry-sdk>=1.15.0
+
+# Additional AI/ML Libraries for 2025
+diffusers>=0.21.0  # Generative models
+accelerate>=0.21.0
+bitsandbytes>=0.41.0  # Quantization
+xformers>=0.0.20  # Memory-efficient attention
+
+# Code Understanding (2025 State-of-the-art)
+tree-sitter-languages>=1.7.0
+code2vec>=1.0.0  # If available
+semantic-code-search>=0.1.0  # Custom package
+
+# Neuro-symbolic AI (2025 trend)
+neural-symbolic>=0.1.0  # If available
+neurosymbolic>=0.1.0    # If available
+
+# Active Predictive Coding (Research implementations)
+# Note: These may need to be installed from source or custom repositories
+# predictive-coding>=0.1.0
+# active-inference>=0.1.0
+
+# Platform-specific dependencies
+# Windows
+pywin32>=305; sys_platform == "win32"
+wmi>=1.5.1; sys_platform == "win32"
+
+# Linux/Unix
+python-daemon>=2.3.0; sys_platform != "win32"
+
+# macOS specific (if needed)
+# No macOS-specific packages currently required
