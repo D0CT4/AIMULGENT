@@ -3,9 +3,7 @@
 > Multi-agent system 
 ## Overview
 
-AIMULGENT is a production-ready multi-agent system that provides comprehensive code analysis using specialized AI agents. Built following KISS principles with a focus on maintainability and reliability.
-
-### Key Features
+AIMULGENT is a production-ready multi-agent system that provides 
 
 - **Multi-Agent Architecture**: Specialized agents for different analysis tasks
 - **Real-time Coordination**: Event-driven system with efficient task distribution  
