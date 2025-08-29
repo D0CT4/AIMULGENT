@@ -63,6 +63,7 @@ class Coordinator:
     def __init__(self, max_concurrent_tasks: int = 10):
         self.max_concurrent_tasks = max_concurrent_tasks
         self.agents: Dict[str, AgentInfo] = {}
+        self.agent_instances: Dict[str, Any] = {}  # Store actual agent instances
         self.tasks: Dict[str, Task] = {}
         self.task_queue: asyncio.Queue = asyncio.Queue()
         self.running = False
@@ -97,10 +98,14 @@ class Coordinator:
         
         logger.info("Coordinator stopped")
     
-    async def register_agent(self, agent_id: str, capabilities: List[str]) -> None:
+    async def register_agent(self, agent_id: str, capabilities: List[str], agent_instance: Any = None) -> None:
         """Register an agent with the coordinator."""
         agent_info = AgentInfo(agent_id=agent_id, capabilities=capabilities)
         self.agents[agent_id] = agent_info
+        
+        if agent_instance:
+            self.agent_instances[agent_id] = agent_instance
+        
         logger.info(f"Agent {agent_id} registered with capabilities: {capabilities}")
     
     async def submit_task(
@@ -187,24 +192,18 @@ class Coordinator:
             task.status = TaskStatus.RUNNING
             task.started_at = datetime.now()
             
-            # Simulate task execution (in real implementation, delegate to agent)
-            await asyncio.sleep(1.0)  # Simulate work
+            # Get the agent to execute the task
+            agent_info = self.agents.get(task.agent_id)
+            if not agent_info:
+                raise ValueError(f"Agent {task.agent_id} not found")
             
-            # Mock result based on task type
-            if task.task_type == "code_analysis":
-                result = {
-                    "lines_analyzed": 100,
-                    "complexity_score": 7.5,
-                    "quality_rating": "Good",
-                    "issues_found": 2
-                }
-            elif task.task_type == "data_processing":
-                result = {
-                    "records_processed": 500,
-                    "quality_score": 0.92,
-                    "transformations_applied": 3
-                }
+            # Execute task using actual agent if available
+            agent_instance = self.agent_instances.get(task.agent_id)
+            if agent_instance and hasattr(agent_instance, 'process_task'):
+                result = await agent_instance.process_task(task.task_type, task.input_data)
             else:
+                # Fallback simulation for agents without instances
+                await asyncio.sleep(0.1)
                 result = {"status": "completed", "message": f"Task {task.task_type} executed"}
             
             # Update task with result

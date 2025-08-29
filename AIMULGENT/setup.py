@@ -98,9 +98,8 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "aimulgent=main:main",
-            "aimulgent-cli=main:main",
-            "aimulgent-server=server:run_server",
+            "aimulgent=aimulgent.main:main",
+            "aimulgent-cli=aimulgent.main:main",
         ],
     },
     include_package_data=True,

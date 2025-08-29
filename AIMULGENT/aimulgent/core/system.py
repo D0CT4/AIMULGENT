@@ -166,10 +166,12 @@ class AIMULGENTSystem:
         if self.settings.agents["analysis"].enabled:
             analysis_agent = AnalysisAgent()
             self.agents["analysis"] = analysis_agent
+            await analysis_agent.start()
             
             await self.coordinator.register_agent(
                 agent_id="analysis",
-                capabilities=self.settings.agents["analysis"].capabilities
+                capabilities=self.settings.agents["analysis"].capabilities,
+                agent_instance=analysis_agent
             )
             logger.info("Analysis agent initialized")
         
